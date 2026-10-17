@@ -1,1 +1,359 @@
-B
+
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ミスターXからの挑戦状 事件ファイル Ver.1</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{margin:0;background:#080b12;color:#eee;font-family:serif;text-align:center}
+
+main{max-width:750px;margin:auto;min-height:100vh;background:#101620;padding-bottom:35px}
+
+.scene{width:100%;max-height:65vh;object-fit:contain;display:block;background:#05070a}
+
+h1{font-size:22px;margin:18px 12px}
+
+h2{font-size:19px}
+
+p{line-height:1.9;margin:18px;padding:0 8px}
+
+button{display:block;width:90%;margin:12px auto;padding:15px;background:#18283a;color:white;border:1px solid #77879a;border-radius:8px;font-size:16px}
+
+button:active{background:#5b2530}
+
+.note{color:#aaa;font-size:12px}
+
+.red{color:#f36b75}
+
+#inventory{border-top:1px solid #555;margin:25px 15px;padding:15px}
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<div id="app"></div>
+
+</main>
+
+<script>
+
+const files={
+
+ title:"mister_x_case_v1_title.png.PNG",
+
+ office:"6D2C3148-941C-4D95-976B-80398",
+
+ box:"C0E2AB74-68EA-4342-941C-53ADD",
+
+ shrine:"47EF3582-0526",
+
+ river:"CFAB3F37-C2A1",
+
+ home:"E147CDA9-180E"
+
+};
+
+let images={};
+
+let visited={shrine:0,river:0,home:0};
+
+let inspected={shrine:[],river:[],home:[]};
+
+let pins={shrine:false,river:false,home:false};
+
+let current="title";
+
+const app=document.getElementById("app");
+
+function locate(key){
+
+ const name=files[key];
+
+ const path=Object.keys(images).find(x=>x.startsWith(name));
+
+ return path||"";
+
+}
+
+function picture(key){
+
+ const src=locate(key);
+
+ return src?`<img class="scene" src="${src}" alt="参考画像">`:"";
+
+}
+
+function show(html){
+
+ app.innerHTML=html;
+
+ window.scrollTo(0,0);
+
+}
+
+function button(label,action){
+
+ return `<button onclick="${action}">${label}</button>`;
+
+}
+
+function go(key){
+
+ current=key;
+
+ if(visited[key]!==undefined)visited[key]++;
+
+ render();
+
+}
+
+function render(){
+
+ if(current==="title"){
+
+ show(picture("title")+
+
+ `<h1>ミスターXからの挑戦状</h1>
+
+ <h2>事件ファイル Ver.1</h2>
+
+ <p>記録を読み、現場を調べ、気づいたことを手帳に残してください。</p>
+
+ ${button("PRESS START","go('office')")}
+
+ <p class="note">実在事件を題材にした検証資料です。探索中のピンや会話は創作演出であり、実際の証拠ではありません。</p>`);
+
+ return;
+
+ }
+
+ if(current==="office"){
+
+ show(picture("office")+
+
+ `<h2>事件捜査本部</h2>
+
+ <p>机の上には、Aちゃんに関する資料が並んでいる。</p>
+
+ ${button("八雲神社を調べる","go('shrine')")}
+
+ ${button("遺体発見現場周辺を調べる","go('river')")}
+
+ ${button("自宅周辺を調べる","go('home')")}
+
+ ${button("アイテムBOX","go('box')")}
+
+ ${button("捜査手帳","go('notebook')")}`);
+
+ return;
+
+ }
+
+ if(current==="box"){
+
+ const found=Object.values(pins).filter(Boolean).length;
+
+ show(picture("box")+
+
+ `<h2>アイテムBOX</h2>
+
+ <p>発見したピン：${found} / 3</p>
+
+ <p>${pins.shrine?"📍 神社のピン":"？ 神社のピン"}</p>
+
+ <p>${pins.river?"📍 河川敷のピン":"？ 河川敷のピン"}</p>
+
+ <p>${pins.home?"📍 自宅周辺のピン":"？ 自宅周辺のピン"}</p>
+
+ ${button("捜査本部へ戻る","go('office')")}`);
+
+ return;
+
+ }
+
+ if(current==="notebook"){
+
+ show(`<h2>捜査手帳</h2>
+
+ <p>八雲神社：調査 ${inspected.shrine.length} 項目</p>
+
+ <p>遺体発見現場周辺：調査 ${inspected.river.length} 項目</p>
+
+ <p>自宅周辺：調査 ${inspected.home.length} 項目</p>
+
+ <p class="note">ここで表示される調査結果とピンは探索演出です。</p>
+
+ ${button("捜査本部へ戻る","go('office')")}`);
+
+ return;
+
+ }
+
+ const places={
+
+ shrine:{title:"八雲神社",image:"shrine",
+
+ options:[
+
+ ["鳥居を調べる","境内へ続く鳥居がある。"],
+
+ ["階段を調べる","石段が続いている。"],
+
+ ["左の石灯籠を調べる","特に変わったものは見当たらない。"],
+
+ ["右の石灯籠を調べる","足元まで注意深く調べた。"],
+
+ ["手前の大きな石を調べる","石のそばで小さなピンを見つけた。"]
+
+ ]},
+
+ river:{title:"遺体発見現場周辺",image:"river",
+
+ options:[
+
+ ["周囲の草を調べる","草が生い茂っている。"],
+
+ ["地面を調べる","足元を慎重に確認した。"],
+
+ ["小さな溝を調べる","溝の近くに小さなピンがあった。"]
+
+ ]},
+
+ home:{title:"自宅周辺",image:"home",
+
+ options:[
+
+ ["周囲の道路を調べる","住宅地の道路が続いている。"],
+
+ ["マンホールを調べる","特に変わったものはない。"],
+
+ ["自動販売機を調べる","刑事A「暑いですね。何か飲みませんか？」刑事B「そうしましょう。」"],
+
+ ["飲み物の取り出し口の下を調べる","取り出し口の下に小さなピンが落ちていた。"]
+
+ ]}
+
+ };
+
+ const place=places[current];
+
+ if(!place)return;
+
+ let html=picture(place.image)+`<h2>${place.title}</h2>
+
+ <p class="note">現在の周辺風景をもとにしたAI加工参考画像。事件当時の状況を再現したものではありません。</p>
+
+ <p>気になる場所を調べてください。</p>`;
+
+ place.options.forEach((opt,i)=>{
+
+ html+=button(opt[0],`inspect('${current}',${i})`);
+
+ });
+
+ html+=button("捜査本部へ戻る","go('office')");
+
+ show(html);
+
+}
+
+function inspect(key,i){
+
+ const data={
+
+ shrine:[
+
+ "境内へ続く鳥居がある。",
+
+ "石段が続いている。",
+
+ "特に変わったものは見当たらない。",
+
+ "足元まで注意深く調べた。",
+
+ "石のそばで小さなピンを見つけた。"
+
+ ],
+
+ river:[
+
+ "草が生い茂っている。",
+
+ "足元を慎重に確認した。",
+
+ "溝の近くに小さなピンがあった。"
+
+ ],
+
+ home:[
+
+ "住宅地の道路が続いている。",
+
+ "特に変わったものはない。",
+
+ "刑事A「暑いですね。何か飲みませんか？」刑事B「そうしましょう。」",
+
+ "取り出し口の下に小さなピンが落ちていた。"
+
+ ]
+
+ };
+
+ if(!inspected[key].includes(i))inspected[key].push(i);
+
+ const target={shrine:4,river:2,home:3};
+
+ const needed={shrine:3,river:2,home:3};
+
+ if(i===target[key]&&inspected[key].length>=needed[key]){
+
+ pins[key]=true;
+
+ show(`<h2 class="red">ピン発見</h2>
+
+ <p>${data[key][i]}</p>
+
+ <p>ピンをアイテムBOXに保管した。</p>
+
+ ${button("探索を続ける",`go('${key}')`)}
+
+ ${button("捜査本部へ戻る","go('office')")}`);
+
+ }else{
+
+ show(`<h2>調査結果</h2>
+
+ <p>${i===target[key]&&!pins[key]?
+
+ "まだ周囲に気になる場所がある。ほかも調べてみよう。":
+
+ data[key][i]}</p>
+
+ ${button("探索を続ける",`go('${key}')`)}`);
+
+ }
+
+}
+
+render();
+
+</script>
+
+</body>
+
+</html>
