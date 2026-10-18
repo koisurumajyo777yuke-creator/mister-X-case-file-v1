@@ -100,6 +100,13 @@ let bState={
   }
 
 };
+ 
+
+function saveBState(){
+
+  localStorage.setItem("caseV1BState",JSON.stringify(bState));
+
+}
 let visited={shrine:0,river:0,home:0};
 
 let inspected={shrine:[],river:[],home:[]};
