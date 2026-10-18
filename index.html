@@ -348,7 +348,9 @@ function inspect(key,i){
  };
 
  if(!inspected[key].includes(i))inspected[key].push(i);
+localStorage.setItem("caseV1Visited",JSON.stringify(visited));
 
+localStorage.setItem("caseV1Inspected",JSON.stringify(inspected));
  const target={shrine:4,river:2,home:3};
 
  const needed={shrine:3,river:2,home:3};
