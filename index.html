@@ -116,7 +116,27 @@ function button(label,action){
  return `<button onclick="${action}">${label}</button>`;
 
 }
+function startNew(){
 
+  localStorage.removeItem("caseV1Pins");
+
+  pins={shrine:false,river:false,home:false};
+
+  visited={shrine:0,river:0,home:0};
+
+  inspected={shrine:[],river:[],home:[]};
+
+  go("office");
+
+}
+
+function continueGame(){
+
+  pins=JSON.parse(localStorage.getItem("caseV1Pins")||'{"shrine":false,"river":false,"home":false}');
+
+  go("office");
+
+}
 function go(key){
 
  current=key;
@@ -139,7 +159,9 @@ function render(){
 
  <p>記録を読み、現場を調べ、気づいたことを手帳に残してください。</p>
 
- ${button("PRESS START","go('office')")}
+ ${button("最初から始める","startNew()")}
+
+${button("続きから再開","continueGame()")}
 
  <p class="note">実在事件を題材にした検証資料です。探索中のピンや会話は創作演出であり、実際の証拠ではありません。</p>`);
 
