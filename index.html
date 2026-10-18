@@ -130,9 +130,15 @@ function startNew(){
 
 }
 
+
+
 function continueGame(){
 
   pins=JSON.parse(localStorage.getItem("caseV1Pins")||'{"shrine":false,"river":false,"home":false}');
+
+  visited=JSON.parse(localStorage.getItem("caseV1Visited")||'{"shrine":0,"river":0,"home":0}');
+
+  inspected=JSON.parse(localStorage.getItem("caseV1Inspected")||'{"shrine":[],"river":[],"home":[]}');
 
   go("office");
 
