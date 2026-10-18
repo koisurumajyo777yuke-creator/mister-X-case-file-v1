@@ -160,6 +160,12 @@ localStorage.removeItem("caseV1Inspected");
 
   inspected={shrine:[],river:[],home:[]};
 
+
+localStorage.removeItem("caseV1BState");
+
+bState.inspected={bshop:[],bdiscovery:[],bhome:[]};
+
+bState.pins={bshop:false,bdiscovery:false,bhome:false};
   go("office");
 
 }
@@ -174,6 +180,8 @@ function continueGame(){
 
   inspected=JSON.parse(localStorage.getItem("caseV1Inspected")||'{"shrine":[],"river":[],"home":[]}');
 
+
+bState=JSON.parse(localStorage.getItem("caseV1BState")||JSON.stringify(bState));
   go("office");
 
 }
