@@ -74,8 +74,12 @@ let visited={shrine:0,river:0,home:0};
 
 let inspected={shrine:[],river:[],home:[]};
 
-let pins={shrine:false,river:false,home:false};
+let pins=JSON.parse(localStorage.getItem("caseV1Pins")||'{"shrine":false,"river":false,"home":false}');
+function savePins(){
 
+  localStorage.setItem("caseV1Pins",JSON.stringify(pins));
+
+}
 let current="title";
 
 const app=document.getElementById("app");
@@ -87,6 +91,7 @@ function locate(key){
  const path=name;
 
  return path||"";
+ 
 
 }
 
@@ -323,7 +328,7 @@ function inspect(key,i){
  if(i===target[key]&&inspected[key].length>=needed[key]){
 
  pins[key]=true;
-
+savePins();
  show(`<h2 class="red">ピン発見</h2>
 
  <p>${data[key][i]}</p>
