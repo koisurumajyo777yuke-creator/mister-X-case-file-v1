@@ -521,6 +521,8 @@ localStorage.setItem("caseV1Inspected",JSON.stringify(inspected));
 savePins();
  show(`<h2 class="red">ピン発見</h2>
 
+
+<div class="pin-photo">${picture(key)}<img class="pin-marker" src="pin_red.PNG" alt="赤いピン" onclick="showPin('${key}')"></div>
  <p>${data[key][i]}</p>
 
  <p>ピンをアイテムBOXに保管した。</p>
