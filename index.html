@@ -273,7 +273,9 @@ ${button("Bちゃん：自宅周辺を調べる","go('bhome')")}
 
  <p>${pins.shrine?"📍 神社のピン":"？ 神社のピン"}</p>
 
- <p>${pins.river?"📍 河川敷のピン":"？ 河川敷のピン"}</p>
+ 
+
+<p>${pins.river?'<img src="pin_blue.PNG" alt="青いピン" style="height:24px;vertical-align:middle"> 河川敷のピン':'? 河川敷のピン'}</p>
 
  <p>${pins.home?"📍 自宅周辺のピン":"？ 自宅周辺のピン"}</p>
 
