@@ -117,6 +117,9 @@ function savePins(){
   localStorage.setItem("caseV1Pins",JSON.stringify(pins));
 
 }
+ 
+
+let places={};
 let current="title";
 
 const app=document.getElementById("app");
@@ -292,7 +295,7 @@ ${button("Bちゃん：自宅周辺を調べる","go('bhome')")}
 
  }
 
- const places={
+ places={
 
  shrine:{title:"八雲神社",image:"shrine",
 
