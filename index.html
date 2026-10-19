@@ -287,6 +287,12 @@ ${button("Bちゃん：自宅周辺を調べる","go('bhome')")}
 
  <p>自宅周辺：調査 ${inspected.home.length} 項目</p>
 
+
+<p>Bちゃん・旧店舗跡周辺：調査 ${bState.inspected.bshop.length} 項目</p>
+
+<p>Bちゃん・遺体発見現場周辺：調査 ${bState.inspected.bdiscovery.length} 項目</p>
+
+<p>Bちゃん・自宅周辺：調査 ${bState.inspected.bhome.length} 項目</p>
  <p class="note">ここで表示される調査結果とピンは探索演出です。</p>
 
  ${button("捜査本部へ戻る","go('office')")}`);
