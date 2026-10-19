@@ -418,6 +418,34 @@ bhome:{
 
 function inspect(key,i){
 
+
+if(bState.inspected[key]){
+
+  if(!bState.inspected[key].includes(i)){
+
+    bState.inspected[key].push(i);
+
+    saveBState();
+
+  }
+
+  show(
+
+    `<h2>調査結果</h2>
+
+   
+
+<p>${places[key].options[i][1]}</p>`+
+
+    button("探索を続ける",`go('${key}')`)+
+
+    button("捜査本部へ戻る","go('office')")
+
+  );
+
+  return;
+
+}
  const data={
 
  shrine:[
