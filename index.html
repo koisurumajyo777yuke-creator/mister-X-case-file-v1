@@ -860,7 +860,7 @@ localStorage.setItem("caseV1Inspected",JSON.stringify(inspected));
 
  const needed={shrine:3,river:2,home:3};
 
- if(i===target[key]&&inspected[key].length>=needed[key]){
+ if(i===target[key]&&inspected[key].length>=needed[key]&&!pins[key]){
 
  pins[key]=true;
 savePins();
