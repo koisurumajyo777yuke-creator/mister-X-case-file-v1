@@ -300,7 +300,9 @@ ${button("Cちゃん：遺体発見現場周辺を調べる","go('cdiscovery')")
 
  `<h2>アイテムBOX</h2>
 
- <p>発見したピン：${found} / 3</p>
+ 
+
+<p>発見したピン：${[pins.shrine,pins.river,pins.home,pins.cdiscovery].filter(Boolean).length} / 4</p>
 
  <p>${pins.shrine?"📍 神社のピン":"？ 神社のピン"}</p>
 
@@ -310,6 +312,8 @@ ${button("Cちゃん：遺体発見現場周辺を調べる","go('cdiscovery')")
 
  <p>${pins.home?"📍 自宅周辺のピン":"？ 自宅周辺のピン"}</p>
 
+
+<p>${pins.cdiscovery ? '<img src="pin_blue.PNG" alt="青いピン" style="width:28px;vertical-align:middle"> Cちゃん・遺体発見現場のピン' : '？ Cちゃん・遺体発見現場のピン'}</p>
  ${button("捜査本部へ戻る","go('office')")}`);
 
  return;
