@@ -757,6 +757,38 @@ if(bState.inspected[key]){
 
   }
 
+
+if(key==="bdiscovery" &&
+
+   bState.inspected[key].length>=3 &&
+
+   !bState.pins.bdiscovery){
+
+  bState.pins.bdiscovery=true;
+
+  pins.bdiscovery=true;
+
+  saveBState();
+
+  savePins();
+
+  show(
+
+    picture("bdiscovery")+
+
+    `<h2 class="red">ピン発見</h2>
+
+    <p>Bちゃん・遺体発見現場周辺のピンを発見した。</p>
+
+    <p><img src="pin_blue.PNG" alt="青いピン" style="width:60px"></p>`+
+
+    button("捜査本部へ戻る","go('office')")
+
+  );
+
+  return;
+
+}
   show(
 
     `<h2>調査結果</h2>
