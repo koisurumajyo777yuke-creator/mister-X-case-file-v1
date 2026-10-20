@@ -294,7 +294,18 @@ ${button("Cちゃん：遺体発見現場周辺を調べる","go('cdiscovery')")
 <p>事件ファイル D<br>1990年5月12日（土）<br>Dちゃん（4歳）</p>
 
 
+${button("Dちゃん：最終目撃地点周辺を調べる","go('dlastseen')")}
+
+${button("Dちゃん：遺体発見現場周辺を調べる","go('ddiscovery')")}
+
+  
+
 <p>事件ファイル E<br>1996年7月7日（日）<br>Eちゃん（4歳）</p>
+
+
+${button("Eちゃん：最終目撃地点周辺を調べる","go('elastseen')")}
+
+  
  ${button("アイテムBOX","go('box')")}
 
  ${button("捜査手帳","go('notebook')")}`);
@@ -522,8 +533,65 @@ cdiscovery:{
 
  ]
 
-}  
- };
+
+
+},
+
+dlastseen:{
+
+  title:"Dちゃん：最終目撃地点周辺",
+
+  image:"dlastseen",
+
+  options:[
+
+    ["道路を調べる","現在の道路の様子を確認した。"],
+
+    ["周囲の建物を調べる","建物の位置関係を観察した。"],
+
+    ["道路の先を調べる","道路の続く方向を記録した。"]
+
+  ]
+
+},
+
+ddiscovery:{
+
+  title:"Dちゃん：遺体発見現場周辺",
+
+  image:"ddiscovery",
+
+  options:[
+
+    ["堤防を調べる","現在の堤防の様子を確認した。"],
+
+    ["河川敷を調べる","河川敷の広がりを観察した。"],
+
+    ["川の方向を調べる","川との位置関係を記録した。"]
+
+  ]
+
+},
+
+elastseen:{
+
+  title:"Eちゃん：最終目撃地点周辺",
+
+  image:"elastseen",
+
+  options:[
+
+    ["施設周辺を調べる","現在の施設周辺を確認した。"],
+
+    ["道路を調べる","周囲の道路の様子を観察した。"],
+
+    ["周辺の目印を調べる","目印となる場所を記録した。"]
+
+  ]
+
+}
+
+};
 
  const place=places[current];
 
@@ -551,7 +619,9 @@ function inspect(key,i){
 
 
 
-if (["cpark","clastseen","cdiscovery"].includes(key)) {
+
+
+if (["cpark","clastseen","cdiscovery","dlastseen","ddiscovery","elastseen"].includes(key)) {
 
   const place = places[key];
 
