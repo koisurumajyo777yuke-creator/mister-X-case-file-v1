@@ -136,7 +136,31 @@ let visited={shrine:0,river:0,home:0};
 
 let inspected={shrine:[],river:[],home:[]};
 
-let pins=JSON.parse(localStorage.getItem("caseV1Pins")||'{"shrine":false,"river":false,"home":false}');
+
+
+let pins=Object.assign(
+
+  {
+
+    shrine:false,
+
+    river:false,
+
+    home:false,
+
+    cdiscovery:false,
+
+    dlastseen:false,
+
+    ddiscovery:false,
+
+    elastseen:false
+
+  },
+
+  JSON.parse(localStorage.getItem("caseV1Pins")||"{}")
+
+);
 function savePins(){
 
   localStorage.setItem("caseV1Pins",JSON.stringify(pins));
@@ -189,7 +213,9 @@ function startNew(){
 localStorage.removeItem("caseV1Visited");
 
 localStorage.removeItem("caseV1Inspected");
-  pins={shrine:false,river:false,home:false};
+
+
+pins={shrine:false,river:false,home:false,cdiscovery:false,dlastseen:false,ddiscovery:false,elastseen:false};
 
   visited={shrine:0,river:0,home:0};
 
@@ -209,8 +235,31 @@ bState.pins={bshop:false,bdiscovery:false,bhome:false};
 
 function continueGame(){
 
-  pins=JSON.parse(localStorage.getItem("caseV1Pins")||'{"shrine":false,"river":false,"home":false}');
 
+
+pins=Object.assign(
+
+  {
+
+    shrine:false,
+
+    river:false,
+
+    home:false,
+
+    cdiscovery:false,
+
+    dlastseen:false,
+
+    ddiscovery:false,
+
+    elastseen:false
+
+  },
+
+  JSON.parse(localStorage.getItem("caseV1Pins")||"{}")
+
+);
   visited=JSON.parse(localStorage.getItem("caseV1Visited")||'{"shrine":0,"river":0,"home":0}');
 
   inspected=JSON.parse(localStorage.getItem("caseV1Inspected")||'{"shrine":[],"river":[],"home":[]}');
