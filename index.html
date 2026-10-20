@@ -444,6 +444,61 @@ bhome:{
 
   ]
 
+},
+
+
+cpark:{
+
+ title:"Cちゃん：尾島公園周辺",
+
+ image:"cpark",
+
+ options:[
+
+  ["公園の入口を調べる","入口付近の様子を確認した。"],
+
+  ["公園内を調べる","現在の公園内を観察した。"],
+
+  ["周辺道路を調べる","周辺道路の位置関係を記録した。"]
+
+ ]
+
+},
+
+clastseen:{
+
+ title:"Cちゃん：最終目撃周辺",
+
+ image:"clastseen",
+
+ options:[
+
+  ["道路を調べる","現在の道路の様子を確認した。"],
+
+  ["見通しを調べる","周囲の見通しを観察した。"],
+
+  ["周辺の目印を調べる","目印となる場所を記録した。"]
+
+ ]
+
+},
+
+cdiscovery:{
+
+ title:"Cちゃん：遺体発見現場周辺",
+
+ image:"cdiscovery",
+
+ options:[
+
+  ["堤防を調べる","現在の堤防の様子を確認した。"],
+
+  ["河川敷を調べる","河川敷の広がりを観察した。"],
+
+  ["川の方向を調べる","川との位置関係を記録した。"]
+
+ ]
+
 }  
  };
 
@@ -539,6 +594,12 @@ if(bState.inspected[key]){
 
  };
 
+
+if (!Array.isArray(inspected[key])) {
+
+  inspected[key] = [];
+
+}
  if(!inspected[key].includes(i))inspected[key].push(i);
 localStorage.setItem("caseV1Visited",JSON.stringify(visited));
 
