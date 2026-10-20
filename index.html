@@ -527,6 +527,48 @@ cdiscovery:{
 function inspect(key,i){
 
 
+
+if (["cpark","clastseen","cdiscovery"].includes(key)) {
+
+  const place = places[key];
+
+  if (!place || !place.options[i]) return;
+
+  if (!Array.isArray(inspected[key])) {
+
+    inspected[key] = [];
+
+  }
+
+  if (!inspected[key].includes(i)) {
+
+    inspected[key].push(i);
+
+    localStorage.setItem(
+
+      "caseV1Inspected",
+
+      JSON.stringify(inspected)
+
+    );
+
+  }
+
+  show(
+
+    picture(place.image) +
+
+    `<h2>調査結果</h2><p>${place.options[i][1]}</p>` +
+
+    button("探索を続ける", `go('${key}')`) +
+
+    button("捜査本部へ戻る", "go('office')")
+
+  );
+
+  return;
+
+}
 if(bState.inspected[key]){
 
   if(!bState.inspected[key].includes(i)){
