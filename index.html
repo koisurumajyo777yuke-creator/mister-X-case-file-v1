@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 
 <html lang="ja">
@@ -331,6 +332,13 @@ ${button("Cちゃん：遺体発見現場周辺を調べる","go('cdiscovery')")
 <p>Bちゃん・遺体発見現場周辺：調査 ${bState.inspected.bdiscovery.length} 項目</p>
 
 <p>Bちゃん・自宅周辺：調査 ${bState.inspected.bhome.length} 項目</p>
+
+
+<p>Cちゃん・尾島公園周辺：調査 ${(inspected.cpark || []).length} 項目</p>
+
+<p>Cちゃん・最終目撃周辺：調査 ${(inspected.clastseen || []).length} 項目</p>
+
+<p>Cちゃん・遺体発見現場周辺：調査 ${(inspected.cdiscovery || []).length} 項目</p>
  <p class="note">ここで表示される調査結果とピンは探索演出です。</p>
 
  ${button("捜査本部へ戻る","go('office')")}`);
