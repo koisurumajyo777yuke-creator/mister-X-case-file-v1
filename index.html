@@ -373,7 +373,9 @@ ${button("Eちゃん：最終目撃地点周辺を調べる","go('elastseen')")}
 
  
 
-<p>発見したピン：${[pins.shrine,pins.river,pins.home,pins.cdiscovery].filter(Boolean).length} / 4</p>
+
+
+<p>発見した青いピン：${["river","bdiscovery","cdiscovery","ddiscovery","elastseen"].filter(key=>pins[key]).length} / 5</p>
 <h3>事件ファイル A</h3>
  <p>${pins.shrine?"📍 神社のピン":"？ 神社のピン"}</p>
 
