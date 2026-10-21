@@ -385,8 +385,40 @@ ${button("Eちゃん：最終目撃地点周辺を調べる","go('elastseen')")}
 
  <p>${pins.home?"📍 自宅周辺のピン":"？ 自宅周辺のピン"}</p>
 
+
+<h3>事件ファイル B</h3>
+
+<p>${pins.bdiscovery ?
+
+'<img src="pin_blue.PNG" alt="青いピン" style="width:28px;vertical-align:middle"> Bちゃん・遺体発見現場のピン'
+
+:
+
+'？ Bちゃん・遺体発見現場のピン'}</p>
 <h3>事件ファイル C</h3>
 <p>${pins.cdiscovery ? '<img src="pin_blue.PNG" alt="青いピン" style="width:28px;vertical-align:middle"> Cちゃん・遺体発見現場のピン' : '？ Cちゃん・遺体発見現場のピン'}</p>
+
+
+<h3>事件ファイル D</h3>
+
+<p>${pins.ddiscovery ?
+
+'<img src="pin_blue.PNG" alt="青いピン" style="width:28px;vertical-align:middle"> Dちゃん・遺体発見現場のピン'
+
+:
+
+'？ Dちゃん・遺体発見現場のピン'}</p>
+
+
+<h3>事件ファイル E</h3>
+
+<p>${pins.elastseen ?
+
+'<img src="pin_blue.PNG" alt="青いピン" style="width:28px;vertical-align:middle"> Eちゃん・最終目撃地点のピン'
+
+:
+
+'？ Eちゃん・最終目撃地点のピン'}</p>
  ${button("捜査本部へ戻る","go('office')")}`);
 
  return;
@@ -416,6 +448,14 @@ ${button("Eちゃん：最終目撃地点周辺を調べる","go('elastseen')")}
 <p>Cちゃん・最終目撃周辺：調査 ${(inspected.clastseen || []).length} 項目</p>
 
 <p>Cちゃん・遺体発見現場周辺：調査 ${(inspected.cdiscovery || []).length} 項目</p>
+
+
+<p>Dちゃん・最終目撃地点周辺：調査 ${(inspected.dlastseen || []).length} 項目</p>
+
+<p>Dちゃん・遺体発見現場周辺：調査 ${(inspected.ddiscovery || []).length} 項目</p>
+
+
+<p>Eちゃん・最終目撃地点周辺：調査 ${(inspected.elastseen || []).length} 項目</p>
  <p class="note">ここで表示される調査結果とピンは探索演出です。</p>
 
  ${button("捜査本部へ戻る","go('office')")}`);
