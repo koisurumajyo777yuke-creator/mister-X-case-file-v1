@@ -1004,6 +1004,126 @@ savePins();
 
 }
 
+
+const originalInspect = inspect;
+
+inspect = function(key, i) {
+
+  const redTargets = {
+
+    shrine: 4,
+
+    home: 3,
+
+    bshop: 1,
+
+    bhome: 3,
+
+    cpark: 0,
+
+    clastseen: 1,
+
+    dlastseen: 2
+
+  };
+
+  if (!(key in redTargets)) {
+
+    return originalInspect(key, i);
+
+  }
+
+  const place = places[key];
+
+  if (!place || !place.options[i]) return;
+
+  const isB = key === "bshop" || key === "bhome";
+
+  const record = isB ? bState.inspected : inspected;
+
+  if (!Array.isArray(record[key])) record[key] = [];
+
+  const alreadyChecked = record[key].includes(i);
+
+  if (!alreadyChecked) record[key].push(i);
+
+  if (isB) saveBState();
+
+  else localStorage.setItem(
+
+    "caseV1Inspected", JSON.stringify(inspected)
+
+  );
+
+  if (
+
+    !pins[key] &&
+
+    alreadyChecked &&
+
+    record[key].length === place.options.length &&
+
+    i === redTargets[key]
+
+  ) {
+
+    pins[key] = true;
+
+    if (isB) {
+
+      bState.pins[key] = true;
+
+      saveBState();
+
+    }
+
+    savePins();
+
+    show(
+
+      picture(key) +
+
+      `<h2 class="red">ピン発見</h2>
+
+       <p>${place.title}の赤いピンを発見した。</p>
+
+       <p><img src="pin_red.PNG"
+
+       alt="赤いピン" style="width:60px"></p>` +
+
+      button("捜査本部へ戻る", "go('office')")
+
+    );
+
+  } else {
+
+    const msg =
+
+      key === "shrine" && i === 4
+
+        ? "大きな石の周辺を調べた。"
+
+        : key === "home" && i === 3
+
+        ? "取り出し口の下を確認した。"
+
+        : place.options[i][1];
+
+    show(
+
+      picture(key) +
+
+      `<h2>調査結果</h2><p>${msg}</p>` +
+
+      button("探索を続ける", `go('${key}')`) +
+
+      button("捜査本部へ戻る", "go('office')")
+
+    );
+
+  }
+
+};
 render();
 
 </script>
