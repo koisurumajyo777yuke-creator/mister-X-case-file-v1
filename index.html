@@ -170,7 +170,11 @@ function savePins(){
 
 let places={};
 let current="title";
+let redStages = JSON.parse(
 
+  localStorage.getItem("caseV1RedStages") || "{}"
+
+);
 const app=document.getElementById("app");
 
 function locate(key){
