@@ -1112,15 +1112,19 @@ inspect = function(key, i) {
 
     show(
 
-      picture(key) +
+   
+
+`<div style="position:relative;line-height:0">` +
+
+picture(key) +
+
+`<img src="pin_red.PNG" alt="赤いピン" style="position:absolute;right:7%;bottom:7%;width:60px;pointer-events:none"></div>` +
 
       `<h2 class="red">ピン発見</h2>
 
        <p>${place.title}の赤いピンを発見した。</p>
 
-       <p><img src="pin_red.PNG"
-
-       alt="赤いピン" style="width:60px"></p>` +
+ 
 
       button("捜査本部へ戻る", "go('office')")
 
