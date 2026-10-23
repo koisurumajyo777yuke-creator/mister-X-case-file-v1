@@ -456,6 +456,9 @@ ${button("Eちゃん：最終目撃地点周辺を調べる","go('elastseen')")}
 :
 
 '？ Eちゃん・最終目撃地点のピン'}</p>
+
+
+${caseV1AllPinsFound() ? button("捜査記録を終了する", "caseV1Ending()") : ""}
  ${button("捜査本部へ戻る","go('office')")}`);
 
  return;
@@ -1179,6 +1182,69 @@ picture(key) +
   }
 
 };
+
+
+function caseV1AllPinsFound() {
+
+  const keys = [
+
+    "shrine", "river", "home",
+
+    "bdiscovery", "bshop", "bhome",
+
+    "cdiscovery", "cpark", "clastseen",
+
+    "ddiscovery", "dlastseen", "elastseen"
+
+  ];
+
+  return keys.every(key => pins[key] === true);
+
+}
+
+function caseV1Ending() {
+
+  if (!caseV1AllPinsFound()) return;
+
+  show(`
+
+    <p class="note">事件ファイル Ver.1</p>
+
+    <h1>調査完了</h1>
+
+    <p>5つの事件ファイル。</p>
+
+    <p>12か所の調査地点。</p>
+
+    <p>あなたはすべてのピンを発見した。</p>
+
+    <p>しかし、これらの記録から
+
+    何が読み取れるのだろうか。</p>
+
+    <p>答えを急いではならない。</p>
+
+    <p>もう一度、記録を見直してほしい。</p>
+
+    <h2 class="red">検証は、まだ終わらない。</h2>
+
+    <p>Ver.2へ続く</p>
+
+    <p class="note">
+
+    製作：恋する魔女
+
+    プログラム：ChatGPT
+
+    グラフィック：ChatGPT
+
+    </p>
+
+    ${button("捜査本部へ戻る", "go('office')")}
+
+  `);
+
+}
 render();
 
 </script>
