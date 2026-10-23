@@ -1206,6 +1206,10 @@ function caseV1Ending() {
 
   if (!caseV1AllPinsFound()) return;
 
+  // Ver.1を全12ピンで終了したときだけ、Ver.2閲覧資格を記録する。
+  // GitHub PagesのVer.1/Ver.2は同一オリジン公開を前提とする。
+  localStorage.setItem("caseV1Ver2Unlocked", "1");
+
   show(`
 
     <p class="note">事件ファイル Ver.1</p>
@@ -1229,6 +1233,8 @@ function caseV1Ending() {
     <h2 class="red">検証は、まだ終わらない。</h2>
 
     <p>Ver.2へ続く</p>
+
+    ${button("事件ファイル Ver.2 考察編へ進む", "window.location.href='../mister-X-case-file-v2/'")}
 
     <p class="note">
 
